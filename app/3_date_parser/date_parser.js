@@ -33,8 +33,8 @@ export default class DateParser {
     }
 
     _extractAndValidate(fieldName, startPosition, endPosition, minValue, maxValue) {
-        const valueString = this._extractStringValue(fieldName, startPosition, endPosition);
-        return this._validateIntegerWithBoundaries(fieldName, minValue, maxValue, valueString);
+        const stringValue = this._extractStringValue(fieldName, startPosition, endPosition);
+        return this._validateIntegerWithinMinMax(fieldName, minValue, maxValue, stringValue);
     }
 
     _extractStringValue(fieldName, startPosition, endPosition) {
@@ -46,7 +46,7 @@ export default class DateParser {
         return stringValue
     }
 
-    _validateIntegerWithBoundaries(fieldName, minValue, maxValue, stringValue) {
+    _validateIntegerWithinMinMax(fieldName, minValue, maxValue, stringValue) {
         let integerValue = parseInt(stringValue);
         if (isNaN(integerValue)) {
             throw `${fieldName} is not an integer`;
