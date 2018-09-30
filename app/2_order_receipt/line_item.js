@@ -6,6 +6,18 @@ export default class LineItem {
         this._quantity = quantity;
     }
 
+    quantity() {
+        return this._quantity;
+    }
+
+    price() {
+        return this._price;
+    }
+
+    description() {
+        return this._description;
+    }
+
     lineAmount() {
         return this._price * this._quantity;
     }
@@ -17,10 +29,6 @@ export default class LineItem {
 
     lineAmountWithTax() {
         return this.lineAmount() + this.saleTax();
-    }
-
-    receiptLine() {
-        return  this._description + "\t" + this._price + "\t" + this._quantity + "\t" +this.lineAmount() +"\n";
     }
 
 }

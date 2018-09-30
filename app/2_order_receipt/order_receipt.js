@@ -19,7 +19,7 @@ export default class OrderReceipt {
     printLineItems() {
         let lineItemsReceipt = "";
         this._order.lineItems().forEach((lineItem) => {
-            lineItemsReceipt += lineItem.receiptLine();
+            lineItemsReceipt += lineItem.description() + "\t" + lineItem.price() + "\t" + lineItem.quantity() + "\t" +lineItem.lineAmount() +"\n";
         });
         return lineItemsReceipt;
     }
