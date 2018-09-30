@@ -17,7 +17,7 @@ export default class DateParser {
     parse() {
         let year, month, date, hour, minute;
 
-        const  yearString = this._dateAndTimeString.substring(0, 4);
+        const  yearString = this._extractStringValue(0, 4);
         year = this._validate(yearString, 4, 2000, 2020, "Year");
 
         const  monthString = this._dateAndTimeString.substring(5, 7);
@@ -39,6 +39,10 @@ export default class DateParser {
         }
 
         return new Date(Date.UTC(year, month - 1, date, hour, minute));
+    }
+
+    _extractStringValue(startPosition, endPosition) {
+        return this._dateAndTimeString.substring(startPosition, endPosition);
     }
 
     _validate(stringValue, minLength, minValue, maxValue, fieldName) {
