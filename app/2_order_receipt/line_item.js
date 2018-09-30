@@ -18,7 +18,7 @@ export default class LineItem {
         return this._qty;
     }
 
-    totalAmount() {
+    lineAmount() {
         return this._p * this._qty;
     }
 
