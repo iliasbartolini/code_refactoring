@@ -18,16 +18,21 @@ export default class DateParser {
         let year, month, date, hour, minute;
 
         const  yearString = this._dateAndTimeString.substring(0, 4);
-        if (yearString.length < 4) {
-            throw new Error("Year string is less than 4 characters");
+
+        function validate() {
+            if (yearString.length < 4) {
+                throw new Error("Year string is less than 4 characters");
+            }
+            year = parseInt(yearString);
+            if (isNaN(year)) {
+                throw "Year is not an integer";
+            }
+            if (year < 2000 || year > 2020) {
+                throw "Year cannot be less than 2000 or more than 2020";
+            }
         }
-        year = parseInt(yearString);
-        if (isNaN(year)) {
-            throw "Year is not an integer";
-        }
-        if (year < 2000 || year > 2020) {
-            throw "Year cannot be less than 2000 or more than 2020";
-        }
+
+        validate();
 
         const  monthString = this._dateAndTimeString.substring(5, 7);
         if (monthString.length < 2) {
