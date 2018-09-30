@@ -16,11 +16,11 @@ export default class DateParser {
 
     validate(stringValue, minLength, minValue, maxValue, fieldName) {
         if (stringValue.length < minLength) {
-            throw new Error(`Year string is less than ${minLength} characters`);
+            throw new Error(`${fieldName} string is less than ${minLength} characters`);
         }
         let integerValue = parseInt(stringValue);
         if (isNaN(integerValue)) {
-            throw "Year is not an integer";
+            throw `${fieldName} is not an integer`;
         }
         if (integerValue < minValue || integerValue > maxValue) {
             throw `${fieldName} cannot be less than ${minValue} or more than ${maxValue}`;
@@ -36,29 +36,10 @@ export default class DateParser {
         year = this.validate(yearString, 4, 2000, 2020, "Year");
 
         const  monthString = this._dateAndTimeString.substring(5, 7);
-        if (monthString.length < 2) {
-            throw "Month string is less than 2 characters";
-        }
-        month = parseInt(monthString);
-        if (isNaN(month)) {
-            throw "Month is not an integer";
-        }
-        if (month < 1 || month > 12) {
-            throw "Month cannot be less than 1 or more than 12";
-        }
+        month = this.validate(monthString, 2, 1, 12, "Month");
 
         const  dateString = this._dateAndTimeString.substring(8, 10);
-        if (dateString.length < 2) {
-            throw "Day string is less than 2 characters";
-        }
-        date = parseInt(dateString);
-        if (isNaN(date)) {
-            throw "Day is not an integer";
-        }
-        if (date < 1 || date > 31) {
-            throw "Day cannot be less than 1 or more than 31";
-        }
-
+        date = this.validate(dateString, 2, 1, 31, "Day");
 
         if (this._dateAndTimeString.substring(10, 11) === "Z") {
             hour = 0;
