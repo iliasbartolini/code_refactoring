@@ -18,4 +18,20 @@ export default class Order {
         return this._lineItems;
     }
 
+    totalAmount() {
+        let totalAmount = 0.0;
+        this._lineItems.forEach((lineItem) => {
+            totalAmount += lineItem.lineAmountWithTax(lineItem);
+        });
+        return totalAmount;
+    }
+
+    totalSaleTax() {
+        let totalSaleTax = 0.0;
+        this._lineItems.forEach((lineItem) => {
+            totalSaleTax += lineItem.saleTax(lineItem);
+        });
+        return totalSaleTax;
+    }
+
 }
