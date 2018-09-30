@@ -1,21 +1,21 @@
 export default class Order {
 
-    constructor(nm, addr ,li ) {
-        this._nm = nm;
-        this._addr = addr;
-        this._li = li;
+    constructor(customerName, customerAddress ,lineItems ) {
+        this._customerName = customerName;
+        this._customerAddress = customerAddress;
+        this._lineItems = lineItems;
     }
 
     customerName() {
-        return this._nm;
+        return this._customerName;
     }
 
     customerAddress() {
-        return this._addr;
+        return this._customerAddress;
     }
 
     lineItems() {
-        return this._li;
+        return this._lineItems;
     }
 
 }
