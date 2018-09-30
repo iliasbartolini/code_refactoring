@@ -15,7 +15,7 @@ export default class LineItem {
         return this.lineAmount() * TAX_RATE_OF_10_PERCENT;
     }
 
-    totalLineAmount() {
+    lineAmountWithTax() {
         return this.lineAmount() + this.saleTax();
     }
 

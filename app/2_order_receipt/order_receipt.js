@@ -13,14 +13,12 @@ export default class OrderReceipt {
         let totalSaleTax = 0.0;
         let totalAmount = 0.0;
 
-
         this._o.lineItems().forEach((lineItem) => {
             receipt += lineItem.receiptLine();
 
             totalSaleTax += lineItem.saleTax(lineItem);
 
-            // calculate total amount of lineItem = price * quantity + 10 % sales tax
-            totalAmount += lineItem.totalLineAmount(lineItem);
+            totalAmount += lineItem.lineAmountWithTax(lineItem);
         });
         receipt += this.footer(totalSaleTax, totalAmount);
         return receipt;
