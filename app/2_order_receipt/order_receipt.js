@@ -30,15 +30,19 @@ export default class OrderReceipt {
             // calculate total amount of lineItem = price * quantity + 10 % sales tax
             tot += lineItem.totalAmount() + salesTax;
         });
-
-        // prints the state tax
-        receipt += "Sales Tax" + '\t' + totSalesTx;
-
-        // print total amount
-        receipt += "Total Amount" + '\t' + tot;
-        return receipt.toString();
+        receipt += this.footer(totSalesTx, tot);
+        return receipt;
     }
 
+
+    footer(totSalesTx, tot) {
+// prints the state tax
+        let footer = "Sales Tax" + '\t' + totSalesTx;
+
+        // print total amount
+        footer += "Total Amount" + '\t' + tot;
+        return footer;
+    }
 
     header() {
         return "======Printing Orders======\n" +
