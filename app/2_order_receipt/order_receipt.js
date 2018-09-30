@@ -6,16 +6,8 @@ export default class OrderReceipt {
 
 
     printReceipt() {
-        let output = "";
 
-        // print headers
-        output += "======Printing Orders======\n";
-
-        // print date, bill no, customer name
-//        output += "Date - " + order.date();
-            output += this._o.customerName();
-            output += this._o.customerAddress();
-//        output += order.customerLoyaltyNumber();
+        let output = this.header();
 
         // prints lineItems
         let totSalesTx = 0.0;
@@ -44,5 +36,13 @@ export default class OrderReceipt {
 
         // print total amount
         output += "Total Amount" + '\t' + tot;
-        return output.toString();    }
+        return output.toString();
+    }
+
+
+    header() {
+        return "======Printing Orders======\n" +
+            this._o.customerName() +
+            this._o.customerAddress();
+    }
 }
