@@ -29,7 +29,7 @@ describe("OrderReceipt", function() {
         expect(output).to.include("milk\t10\t2\t20\n");
         expect(output).to.include("biscuits\t5\t5\t25\n");
         expect(output).to.include("chocolate\t20\t1\t20\n");
-        expect(output).to.include("Sales Tax\t6.5");
+        expect(output).to.include("Sales Tax\t6.5\n");
         expect(output).to.include("Total Amount\t71.5");
     });
 
