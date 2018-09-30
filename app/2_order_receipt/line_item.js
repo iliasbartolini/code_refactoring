@@ -23,9 +23,8 @@ export default class LineItem {
     }
 
     saleTax() {
-// calculate sales tax @ rate of 10%
-        var salesTax = this.lineAmount() * .10;
-        return salesTax;
+        const TAX_RATE_OF_10_PERCENT = 0.10;
+        return this.lineAmount() * TAX_RATE_OF_10_PERCENT;
     }
 
     totalLineAmount() {
@@ -33,15 +32,7 @@ export default class LineItem {
     }
 
     lineItemReceipt() {
-        let receiptLine = this.description();
-        receiptLine += "\t";
-        receiptLine += this.price();
-        receiptLine += "\t";
-        receiptLine += this.quantity();
-        receiptLine += "\t";
-        receiptLine += this.lineAmount();
-        receiptLine += "\n";
-        return receiptLine
+        return  this.description() + "\t" + this.price() + "\t" + this.quantity() + "\t" +this.lineAmount() +"\n";
     }
 
 }
