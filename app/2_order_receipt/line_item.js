@@ -6,18 +6,6 @@ export default class LineItem {
         this._quantity = quantity;
     }
 
-    description() {
-        return this._description;
-    }
-
-    price() {
-        return this._price;
-    }
-
-    quantity() {
-        return this._quantity;
-    }
-
     lineAmount() {
         return this._price * this._quantity;
     }
@@ -32,7 +20,7 @@ export default class LineItem {
     }
 
     receiptLine() {
-        return  this.description() + "\t" + this.price() + "\t" + this.quantity() + "\t" +this.lineAmount() +"\n";
+        return  this._description + "\t" + this._price + "\t" + this._quantity + "\t" +this.lineAmount() +"\n";
     }
 
 }
