@@ -6,21 +6,25 @@ export default class OrderReceipt {
 
 
     printReceipt() {
-
-        let receipt = this.header();
-
-        // prints lineItems
-        this._o.lineItems().forEach((lineItem) => {
-            receipt += lineItem.receiptLine();
-        });
-
-        receipt += this.footer();
-        
-        return receipt;
+        return this.printHeader() + this.printLineItems() + this.printFooter();
     }
 
 
-    footer() {
+    printHeader() {
+        return "======Printing Orders======\n" +
+            this._o.customerName() +
+            this._o.customerAddress();
+    }
+
+    printLineItems() {
+        let lineItemsReceipt = "";
+        this._o.lineItems().forEach((lineItem) => {
+            lineItemsReceipt += lineItem.receiptLine();
+        });
+        return lineItemsReceipt;
+    }
+
+    printFooter() {
         let totalSaleTax = 0.0;
         let totalAmount = 0.0;
         this._o.lineItems().forEach((lineItem) => {
@@ -30,11 +34,5 @@ export default class OrderReceipt {
 
         return "Sales Tax" + "\t" + totalSaleTax + "\n" +
                "Total Amount" + "\t" + totalAmount  + "\n" ;
-    }
-
-    header() {
-        return "======Printing Orders======\n" +
-            this._o.customerName() +
-            this._o.customerAddress();
     }
 }
