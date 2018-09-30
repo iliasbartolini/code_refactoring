@@ -18,13 +18,13 @@ export default class DateParser {
         let year, month, date, hour, minute;
 
         const  yearString = this._extractStringValue(0, 4);
-        year = this._validate(yearString, 4, 2000, 2020, "Year");
+        year = this._validate("Year", 4, 2000, 2020, yearString);
 
         const  monthString = this._dateAndTimeString.substring(5, 7);
-        month = this._validate(monthString, 2, 1, 12, "Month");
+        month = this._validate("Month", 2, 1, 12, monthString);
 
         const  dateString = this._dateAndTimeString.substring(8, 10);
-        date = this._validate(dateString, 2, 1, 31, "Day");
+        date = this._validate("Day", 2, 1, 31, dateString);
 
         if (this._dateAndTimeString.substring(10, 11) === "Z") {
             hour = 0;
@@ -32,10 +32,10 @@ export default class DateParser {
         } else {
 
             const  hourString = this._dateAndTimeString.substring(11, 13);
-            hour = this._validate(hourString, 2, 0, 23, "Hour");
+            hour = this._validate("Hour", 2, 0, 23, hourString);
 
             const  minuteString = this._dateAndTimeString.substring(14, 16);
-            minute = this._validate(minuteString, 2, 0, 59, "Minute");
+            minute = this._validate("Minute", 2, 0, 59, minuteString);
         }
 
         return new Date(Date.UTC(year, month - 1, date, hour, minute));
@@ -45,7 +45,7 @@ export default class DateParser {
         return this._dateAndTimeString.substring(startPosition, endPosition);
     }
 
-    _validate(stringValue, minLength, minValue, maxValue, fieldName) {
+    _validate(fieldName, minLength, minValue, maxValue, stringValue) {
         if (stringValue.length < minLength) {
             throw new Error(`${fieldName} string is less than ${minLength} characters`);
         }
