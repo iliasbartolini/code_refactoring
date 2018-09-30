@@ -15,12 +15,12 @@ export default class DateParser {
     }
 
     parse() {
-        let year, month, date, hour, minute;
 
-        year  = this._extractAndValidate("Year", 0, 4, 2000, 2020);
-        month = this._extractAndValidate("Month", 5, 7, 1, 12);
-        date  = this._extractAndValidate("Day", 8, 10, 1, 31);
+        const year  = this._extractAndValidate("Year", 0, 4, 2000, 2020);
+        const month = this._extractAndValidate("Month", 5, 7, 1, 12);
+        const date  = this._extractAndValidate("Day", 8, 10, 1, 31);
 
+        let hour, minute;
         if (this._dateAndTimeString.substring(10, 11) === "Z") {
             hour = 0;
             minute = 0;
