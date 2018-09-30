@@ -17,11 +17,9 @@ export default class OrderReceipt {
     }
 
     printLineItems() {
-        let lineItemsReceipt = "";
-        this._order.lineItems().forEach((lineItem) => {
-            lineItemsReceipt += lineItem.description() + "\t" + lineItem.price() + "\t" + lineItem.quantity() + "\t" +lineItem.lineAmount() +"\n";
-        });
-        return lineItemsReceipt;
+        return this._order.lineItems()
+            .map((lineItem) => lineItem.description() + "\t" + lineItem.price() + "\t" + lineItem.quantity() + "\t" +lineItem.lineAmount() +"\n")
+            .reduce((a, b) => a + b, "");
     }
 
     printFooter() {
