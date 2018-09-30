@@ -10,22 +10,24 @@ export default class OrderReceipt {
         let receipt = this.header();
 
         // prints lineItems
-        let totalSaleTax = 0.0;
-        let totalAmount = 0.0;
-
         this._o.lineItems().forEach((lineItem) => {
             receipt += lineItem.receiptLine();
-
-            totalSaleTax += lineItem.saleTax(lineItem);
-
-            totalAmount += lineItem.lineAmountWithTax(lineItem);
         });
-        receipt += this.footer(totalSaleTax, totalAmount);
+
+        receipt += this.footer();
+        
         return receipt;
     }
 
 
-    footer(totalSaleTax, totalAmount) {
+    footer() {
+        let totalSaleTax = 0.0;
+        let totalAmount = 0.0;
+        this._o.lineItems().forEach((lineItem) => {
+            totalSaleTax += lineItem.saleTax(lineItem);
+            totalAmount += lineItem.lineAmountWithTax(lineItem);
+        });
+
         return "Sales Tax" + "\t" + totalSaleTax + "\n" +
                "Total Amount" + "\t" + totalAmount  + "\n" ;
     }
