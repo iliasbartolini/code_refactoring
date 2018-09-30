@@ -1,7 +1,4 @@
-
-export default function hello(a_string) {
-  if (a_string === undefined)
-    return "Hello, World";
-  else
-    return `Hello, ${a_string}`;
+export default function hello(name) {
+    const sayHelloTo = (name === undefined) ? "World" : name;
+    return `Hello, ${sayHelloTo}`;
 }
