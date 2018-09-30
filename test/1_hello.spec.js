@@ -4,7 +4,6 @@ import {expect} from "chai";
 describe("Hello", function() {
 
   it("greets the world", function() {
-    //put your name here
     var actual  = prints_output();
 
     expect(actual).to.equal("Hello, World");
