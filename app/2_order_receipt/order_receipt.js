@@ -15,7 +15,7 @@ export default class OrderReceipt {
 
 
         this._o.lineItems().forEach((lineItem) => {
-            receipt += lineItem.lineItemReceipt();
+            receipt += lineItem.receiptLine();
 
             totalSaleTax += lineItem.saleTax(lineItem);
 
