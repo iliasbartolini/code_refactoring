@@ -17,28 +17,24 @@ export default class DateParser {
     parse() {
         let year, month, date, hour, minute;
 
-        const  yearString = this._extractStringValue(0, 4);
-        year = this._validate("Year", 4, 2000, 2020, yearString);
-
-        const  monthString = this._dateAndTimeString.substring(5, 7);
-        month = this._validate("Month", 2, 1, 12, monthString);
-
-        const  dateString = this._dateAndTimeString.substring(8, 10);
-        date = this._validate("Day", 2, 1, 31, dateString);
+        year  = this._extractAndValidate("Year", 0, 4, 2000, 2020);
+        month = this._extractAndValidate("Month", 5, 7, 1, 12);
+        date  = this._extractAndValidate("Day", 8, 10, 1, 31);
 
         if (this._dateAndTimeString.substring(10, 11) === "Z") {
             hour = 0;
             minute = 0;
         } else {
-
-            const  hourString = this._dateAndTimeString.substring(11, 13);
-            hour = this._validate("Hour", 2, 0, 23, hourString);
-
-            const  minuteString = this._dateAndTimeString.substring(14, 16);
-            minute = this._validate("Minute", 2, 0, 59, minuteString);
+            hour   = this._extractAndValidate("Hour", 11, 13, 0, 23);
+            minute = this._extractAndValidate("Minute", 14, 16, 0, 59);
         }
 
         return new Date(Date.UTC(year, month - 1, date, hour, minute));
+    }
+
+    _extractAndValidate(fieldName, startPosition, endPosition, minValue, maxValue) {
+        const valueString = this._extractStringValue(startPosition, endPosition);
+        return this._validate(fieldName, endPosition - startPosition, minValue, maxValue, valueString);
     }
 
     _extractStringValue(startPosition, endPosition) {
