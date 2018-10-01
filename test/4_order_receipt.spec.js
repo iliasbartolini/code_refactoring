@@ -1,6 +1,6 @@
-import LineItem from "../app/2_order_receipt/line_item";
-import Order from "../app/2_order_receipt/order";
-import OrderReceipt from "../app/2_order_receipt/order_receipt";
+import LineItem from "../app/4_order_receipt/line_item";
+import Order from "../app/4_order_receipt/order";
+import OrderReceipt from "../app/4_order_receipt/order_receipt";
 import {expect} from "chai";
 
 describe("OrderReceipt", function() {

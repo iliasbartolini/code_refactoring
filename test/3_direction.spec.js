@@ -1,5 +1,5 @@
 import {expect} from "chai";
-import Direction from "../app/4_direction/direction";
+import Direction from "../app/3_direction/direction";
 
 describe("Direction", function() {
 

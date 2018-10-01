@@ -1,5 +1,5 @@
 import {expect} from "chai";
-import DateParser from "../app/3_date_parser/date_parser";
+import DateParser from "../app/2_date_parser/date_parser";
 
 describe("DateParser", function() {
 
