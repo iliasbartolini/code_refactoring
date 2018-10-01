@@ -15,20 +15,8 @@ export default class Position {
     }
 
     move() {
-        switch (this._direction) {
-            case "N":
-                this._y++;
-                break;
-            case "S":
-                this._y--;
-                break;
-            case "E":
-                this._x++;
-                break;
-            case "W":
-                this._x--;
-                break;
-        }
+        this._x += Position.xMoveLookup[this._direction];
+        this._y += Position.yMoveLookup[this._direction];
     }
 }
 
@@ -44,4 +32,18 @@ Position.turnLeftLookup = {
     "W" : "S",
     "S" : "E",
     "E" : "N"
+};
+
+Position.xMoveLookup = {
+    "N" : 0,
+    "W" : -1,
+    "S" : 0,
+    "E" : +1
+};
+
+Position.yMoveLookup = {
+    "N" : +1,
+    "W" : 0,
+    "S" : -1,
+    "E" : 0
 };
