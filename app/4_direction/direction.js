@@ -4,29 +4,24 @@ export default class Direction {
         this._direction = direction;
     }
 
-
     turnRight() {
-        const newDirection = Direction._turnRightLookup[this._direction];
-        return new Direction(newDirection);
+        return this._nextDirection(Direction._rightOrderedDirections);
     }
 
     turnLeft() {
-        const newDirection = Direction._turnLeftLookup[this._direction];
+        return this._nextDirection(Direction._leftOrderedDirections);
+    }
+
+    _nextDirection(orderedLookup) {
+        const currentDirectionIndex = orderedLookup.indexOf(this._direction);
+        const newDirectionIndex = (currentDirectionIndex + 1) % orderedLookup.length;
+        const newDirection = orderedLookup[newDirectionIndex];
         return new Direction(newDirection);
     }
 
 }
 
-Direction._turnLeftLookup = {
-    "N": "W",
-    "E": "N",
-    "S": "E",
-    "W": "S"
-};
+Direction._rightOrderedDirections = ["N", "E", "S", "W"];
+Direction._leftOrderedDirections = Direction._rightOrderedDirections.slice(0).reverse();
 
-Direction._turnRightLookup = {
-    "N": "E",
-    "E": "S",
-    "S": "W",
-    "W": "N"
-};
+
