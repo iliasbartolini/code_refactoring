@@ -16,56 +16,44 @@ export default class DateParser {
 
     parse() {
 
-        const year  = new FieldValidation("Year", 0, 4, 2000, 2020).validate(this._dateAndTimeString);
-        const month = new FieldValidation("Month", 5, 7, 1, 12).validate(this._dateAndTimeString);
-        const date  = new FieldValidation("Day", 8, 10, 1, 31).validate(this._dateAndTimeString);
+        const year  = this._extractAndValidate("Year", 0, 4, 2000, 2020);
+        const month = this._extractAndValidate("Month", 5, 7, 1, 12);
+        const date  = this._extractAndValidate("Day", 8, 10, 1, 31);
 
         let hour, minute;
         if (this._dateAndTimeString.substring(10, 11) === "Z") {
             hour = 0;
             minute = 0;
         } else {
-            hour   = new FieldValidation("Hour", 11, 13, 0, 23).validate(this._dateAndTimeString);
-            minute = new FieldValidation("Minute", 14, 16, 0, 59).validate(this._dateAndTimeString);
+            hour   = this._extractAndValidate("Hour", 11, 13, 0, 23);
+            minute = this._extractAndValidate("Minute", 14, 16, 0, 59);
         }
 
         return new Date(Date.UTC(year, month - 1, date, hour, minute));
     }
 
-}
-
-class FieldValidation {
-    constructor(name, start, end, min, max) {
-        this._name = name;
-        this._start = start;
-        this._end = end;
-        this._min = min;
-        this._max = max;
+    _extractAndValidate(fieldName, startPosition, endPosition, minValue, maxValue) {
+        const stringValue = this._extractStringValue(fieldName, startPosition, endPosition);
+        return this._validateIntegerWithinMinMax(fieldName, minValue, maxValue, stringValue);
     }
 
-    validate(containingString) {
-        const stringValue = this._extractStringValue(containingString);
-        return this._validateIntegerWithinMinMax(stringValue);
-    }
-
-    _extractStringValue(containingString) {
-        const stringValue = containingString.substring(this._start, this._end);
-        const minLength = this._end - this._start;
+    _extractStringValue(fieldName, startPosition, endPosition) {
+        const stringValue = this._dateAndTimeString.substring(startPosition, endPosition);
+        const minLength = endPosition - startPosition;
         if (stringValue.length < minLength) {
-            throw new Error(`${this._name} string is less than ${minLength} characters`);
+            throw new Error(`${fieldName} string is less than ${minLength} characters`);
         }
         return stringValue
     }
 
-    _validateIntegerWithinMinMax(stringValue) {
+    _validateIntegerWithinMinMax(fieldName, minValue, maxValue, stringValue) {
         let integerValue = parseInt(stringValue);
         if (isNaN(integerValue)) {
-            throw `${this._name} is not an integer`;
+            throw `${fieldName} is not an integer`;
         }
-        if (integerValue < this._min || integerValue > this._max) {
-            throw `${this._name} cannot be less than ${this._min} or more than ${this._max}`;
+        if (integerValue < minValue || integerValue > maxValue) {
+            throw `${fieldName} cannot be less than ${minValue} or more than ${maxValue}`;
         }
         return integerValue
     }
-
 }
