@@ -7,7 +7,7 @@ Step by step exercises to introduce the practice of Refactoring.
 ## How to use this codebase
 
 You should probably have followed a introductory presentation to code refactoring.<br>
-See on [slideshare](https://www.slideshare.net/brain79/code-refactoring-workshop)
+See on [slideshare](https://www.slideshare.net/brain79/code-refactoring-workshop-in-javascript)
 
 Prerequisite is basic knowledge of Javascript and have [Node.js](https://nodejs.org/) installed. 
 
