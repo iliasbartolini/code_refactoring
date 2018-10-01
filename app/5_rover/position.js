@@ -7,37 +7,11 @@ export default class Position {
     }
 
     turnRight() {
-        switch (this._direction) {
-            case "N":
-                this._direction = "E";
-                break;
-            case "S":
-                this._direction = "W";
-                break;
-            case "E":
-                this._direction = "N";
-                break;
-            case "W":
-                this._direction = "S";
-                break;
-        }
+        this._direction = Position.turnRightLookup[this._direction];
     }
 
     turnLeft() {
-        switch (this._direction) {
-            case "N":
-                this._direction = "W";
-                break;
-            case "S":
-                this._direction = "E";
-                break;
-            case "E":
-                this._direction = "N";
-                break;
-            case "W":
-                this._direction = "S";
-                break;
-        }
+        this._direction = Position.turnLeftLookup[this._direction];
     }
 
     move() {
@@ -57,3 +31,17 @@ export default class Position {
         }
     }
 }
+
+Position.turnRightLookup = {
+    "N" : "E",
+    "E" : "S",
+    "S" : "W",
+    "W" : "N"
+};
+
+Position.turnLeftLookup = {
+    "N" : "W",
+    "W" : "S",
+    "S" : "E",
+    "E" : "N"
+};

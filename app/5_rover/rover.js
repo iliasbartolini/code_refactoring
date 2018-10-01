@@ -25,7 +25,6 @@ export default class Rover {
         }
 
         return this._position;
-
     }
 
 }
