@@ -40,3 +40,7 @@ If you're practicing you should **not** check this branch first. Try solving the
 I recommend to check:
 - the book _"Refactoring - Improving the design of existing code"_ by Martin Fowler. See: https://refactoring.com/ - Note: 2nd edition available soon. 
 - the website https://refactoring.guru for a quickly available and easily accessible resource to learn.
+
+## TODO
+
+- Add after '1_hello' few simple example to practice individually basic refactoring in smaller steps
